@@ -1,3 +1,5 @@
+package com.ListaSimple;
+
 public class ListaEnlazada<T>{
 	Nodo<T> head;
 	int largo;
@@ -66,7 +68,7 @@ public class ListaEnlazada<T>{
 		if(largo > 0)
 			quickSort(0, largo);
 		else {
-			System.out.println("Lista vacía");
+			System.out.println("Lista vacï¿½a");
 		}
 	}
 	
