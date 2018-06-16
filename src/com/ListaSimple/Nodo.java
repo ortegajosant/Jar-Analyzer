@@ -1,3 +1,5 @@
+package com.ListaSimple;
+
 public class Nodo<T> {
 	public Nodo<T> siguiente;
 	public T valor;
