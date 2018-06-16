@@ -5,6 +5,7 @@ import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
 import com.jaranalyzer.grafo.Grafo;
+import com.jaranalyzer.grafo.NodoGrafo;
 
 public class Dependencia {
 
@@ -46,6 +47,26 @@ public class Dependencia {
 	
 	public Grafo getGrafo() {
 		return this.grafoJars;
+	}
+	
+	public NodoGrafo obtenerDependenciaInterna(String vertice) {
+		return grafoJars.buscarVertice(vertice);
+	}
+
+	public JarFile getJar() {
+		return jar;
+	}
+
+	public void setJar(JarFile jar) {
+		this.jar = jar;
+	}
+
+	public Grafo getGrafoJars() {
+		return grafoJars;
+	}
+
+	public void setGrafoJars(Grafo grafoJars) {
+		this.grafoJars = grafoJars;
 	}
 
 }
