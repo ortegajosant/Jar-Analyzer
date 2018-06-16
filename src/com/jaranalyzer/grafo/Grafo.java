@@ -118,4 +118,8 @@ public class Grafo {
 		return null;
 	}
 
+	public SimpleList<NodoGrafo> getVertices() {
+		return vertices;
+	}
+
 }

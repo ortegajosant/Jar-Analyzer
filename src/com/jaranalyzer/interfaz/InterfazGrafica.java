@@ -3,6 +3,7 @@ import java.io.File;
 
 import javax.swing.JFrame;
 
+import com.jaranalyzer.adapter.Adapter;
 import com.jaranalyzer.dependencias.Dependencia;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
@@ -25,6 +26,7 @@ import sun.tools.jar.resources.jar;
 public class InterfazGrafica extends Application {
 	
     	Dependencia jarGrafo;
+    	Graph grafoJung;
     	Pane layout = new Pane();
     	Button btnagregarJAR = new Button("Añadir JAR");
     	Button btnGrafo = new Button("Grafo");
@@ -37,7 +39,6 @@ public class InterfazGrafica extends Application {
     
 	public static void main(String[] args) {
 		launch(args);
-
 	}
 	
 	@Override
@@ -98,7 +99,6 @@ public class InterfazGrafica extends Application {
                 	jarActual.setText(file.toString());
                 	jarGrafo = new Dependencia(file.toString());
                 	jarGrafo.generarGrafoJars();
-                	jarGrafo.getGrafo().imprimirGrafo();
                 }
             }
         });
@@ -109,7 +109,10 @@ public class InterfazGrafica extends Application {
         btnGrafo.setOnAction(new EventHandler<ActionEvent>(){  
             @Override
             public void handle(ActionEvent event){
-            	
+            	if(grafoJung == null) {
+                	grafoJung = Adapter.grafoJung(jarGrafo);
+            	}
+            	DibujaGrafo.DibujarGrafo(grafoJung);          	
             }});
        //Fin de la función      
 
