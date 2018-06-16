@@ -4,10 +4,13 @@ import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
@@ -21,11 +24,13 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse.Mode;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
+import javafx.application.Application;
+import javafx.embed.swing.SwingNode;
 import javafx.scene.layout.Pane;
 
 public class DibujaGrafo {
 	
-	public static void DibujarGrafo(Graph g, JFrame panel) {
+	public static void DibujarGrafo(Graph g) {
 		
 		 Layout<Integer, String> layout = new CircleLayout(g);
 		 layout.setSize(new Dimension(300,300)); 
@@ -48,12 +53,11 @@ public class DibujaGrafo {
 					System.out.println(vertex);
 				}		
 			});
+			
+		 JFrame frame = new JFrame();	
+		 frame.getContentPane().add(vv);
+		 frame.pack();
+		 frame.setVisible(true); 
 
-			panel.add(vv);
-			panel.pack();
-			panel.setVisible(true); 
-	}
-	
-	
-	
+    }
 }
