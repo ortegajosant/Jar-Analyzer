@@ -102,7 +102,7 @@ public class Grafo {
 
 	public NodoGrafo buscarVertice(String vertice) {
 		for (int i = 0; i < vertices.getLength(); i++) {
-			if (vertices.find(i).equals(vertice)) {
+			if (vertices.find(i).getId().equals(vertice)) {
 				return vertices.find(i);
 			}
 		}
