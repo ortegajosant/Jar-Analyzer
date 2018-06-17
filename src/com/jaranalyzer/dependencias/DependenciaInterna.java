@@ -17,6 +17,12 @@ import org.jdom2.input.SAXBuilder;
 import com.jaranalyzer.grafo.Grafo;
 import com.jaranalyzer.grafo.NodoGrafo;
 
+/**
+ * Permite la creación de las dependencias internas del JAR
+ * 
+ * @author jorte
+ *
+ */
 public class DependenciaInterna {
 	private JarFile jarInterno;
 	private Grafo dependenciasInternas;
@@ -32,7 +38,7 @@ public class DependenciaInterna {
 		dependenciasInternas = new Grafo();
 		extraerPOM(new File(jarInterno.getName()));
 		generarGrafoInterno();
-		
+
 		File file2 = new File("jarInterno/pom.xml");
 		if (file2.exists()) {
 			file2.delete();
@@ -125,8 +131,8 @@ public class DependenciaInterna {
 				for (int i = 0; i < dependencias.getChildren().size(); i++) {
 					for (int j = 0; j < dependencias.getChildren().get(i).getChildren().size(); j++) {
 						if (dependencias.getChildren().get(i).getChildren().get(j).getName().equals("artifactId")) {
-							dependenciasInternas
-									.agregarVertice(dependencias.getChildren().get(i).getChildren().get(j).getText(), "");
+							dependenciasInternas.agregarVertice(
+									dependencias.getChildren().get(i).getChildren().get(j).getText(), "");
 							dependenciasInternas.agregarArista(dependenciaNombre,
 									dependencias.getChildren().get(i).getChildren().get(j).getText());
 						}
@@ -136,7 +142,7 @@ public class DependenciaInterna {
 			}
 		}
 	}
-	
+
 	public Grafo getDependenciasInternas() {
 		return this.dependenciasInternas;
 	}
