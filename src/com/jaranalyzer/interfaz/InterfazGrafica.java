@@ -25,17 +25,18 @@ import sun.tools.jar.resources.jar;
 
 public class InterfazGrafica extends Application {
 	
-    	Dependencia jarGrafo;
-    	Graph grafoJung;
-    	Pane layout = new Pane();
-    	Button btnagregarJAR = new Button("Añadir JAR");
-    	Button btnGrafo = new Button("Grafo");
-        ListView lstRankingDep = new ListView();
-        ListView lstRankingRef = new ListView();
-        Label lblRankDep = new Label("Ranking de Dependencias");
-        Label lblRankRef = new Label("Ranking de Referencias");
-        Label jarActual = new Label();
-        Label lblJar = new Label();
+    	private Dependencia jarGrafo;
+    	private Graph grafoJung;
+    	private Pane layout = new Pane();
+    	private Button btnagregarJAR = new Button("Añadir JAR");
+    	private Button btnGrafo = new Button("Grafo");
+    	private ListView lstRankingDep = new ListView();
+    	private ListView lstRankingRef = new ListView();
+    	private Label lblRankDep = new Label("Ranking de Dependencias");
+    	private Label lblRankRef = new Label("Ranking de Referencias");
+    	private Label jarActual = new Label();
+    	private Label lblJar = new Label();
+
     
 	public static void main(String[] args) {
 		launch(args);
@@ -96,10 +97,10 @@ public class InterfazGrafica extends Application {
                 fileChooser.getExtensionFilters().add(extension);
                 File file = fileChooser.showOpenDialog(stage);
                 if(file != null) {
-                	jarActual.setText(file.toString());
-                	jarGrafo = new Dependencia(file.toString());
-                	jarGrafo.generarGrafoJars();
-                }
+	                	jarActual.setText(file.toString());
+	                	jarGrafo = new Dependencia(file.toString());
+	                	jarGrafo.generarGrafoJars();
+              }
             }
         });
         //Fin de la función
@@ -109,10 +110,12 @@ public class InterfazGrafica extends Application {
         btnGrafo.setOnAction(new EventHandler<ActionEvent>(){  
             @Override
             public void handle(ActionEvent event){
-            	if(grafoJung == null) {
-                	grafoJung = Adapter.grafoJung(jarGrafo);
-            	}
-            	DibujaGrafo.DibujarGrafo(grafoJung);          	
+            	if(jarGrafo != null) {
+            		grafoJung = Adapter.grafoJung(jarGrafo);
+                	DibujaGrafo dibujar = DibujaGrafo.getInstance();
+            		dibujar.DibujarGrafo(grafoJung);
+            	}                 	
+
             }});
        //Fin de la función      
 
