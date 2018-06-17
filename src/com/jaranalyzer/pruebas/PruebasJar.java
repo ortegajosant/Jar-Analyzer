@@ -1,5 +1,7 @@
 package com.jaranalyzer.pruebas;
 
+import java.io.IOException;
+
 import com.jaranalyzer.dependencias.Dependencia;
 import com.jaranalyzer.dependencias.DependenciaInterna;
 
@@ -13,7 +15,12 @@ public class PruebasJar {
 		
 		dependencia.getGrafo().imprimirGrafo();
 		
-		DependenciaInterna interna = new DependenciaInterna(dependencia.getJar(), dependencia.obtenerDependenciaInterna("gdx-box2d-1.9.8.jar"));
+		try {
+			DependenciaInterna interna = new DependenciaInterna(dependencia.getJar(), dependencia.obtenerDependenciaInterna("gdx-1.9.8.jar"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }
 }
