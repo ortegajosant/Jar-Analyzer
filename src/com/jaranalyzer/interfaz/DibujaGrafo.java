@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -15,6 +17,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+
+import com.jaranalyzer.adapter.Adapter;
+import com.jaranalyzer.dependencias.Dependencia;
+import com.jaranalyzer.dependencias.DependenciaInterna;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
@@ -32,77 +40,92 @@ import javafx.application.Application;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.layout.Pane;
 
-public class DibujaGrafo extends JFrame implements ActionListener{
-	
+public class DibujaGrafo extends JFrame {
+
 	private static DibujaGrafo instance;
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem zoomIn, zoomOut;
 	private String vertex = "";
-	
-	private DibujaGrafo() {};
-	
-	public static DibujaGrafo getInstance() {
-		if(instance == null) {
-			instance = new DibujaGrafo();
-		}
-		return instance;
+	private Dependencia dependencia;
+	private Graph grafo;
+
+	public DibujaGrafo() {
+
 	}
 	
-	public void DibujarGrafo(Graph g) {
-		
+	public void DibujarGrafo(Dependencia dependencia) {
+
+		this.dependencia = dependencia;
+
+		grafo = Adapter.grafoJung(dependencia);
+
 		menuBar = new JMenuBar();
-		menu = new JMenu("Zoom");
-		zoomIn = new JMenuItem("In");
 		zoomOut = new JMenuItem("Out");
+		zoomIn = new JMenuItem("In");
+		zoomIn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					DependenciaInterna di = new DependenciaInterna(dependencia.getJar(),
+							dependencia.obtenerDependenciaInterna(vertex));
+					if (di.getDependenciasInternas() != null) {
+						DibujarGrafo(adapterDI(di));
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}			
+		});
+		
+		zoomOut.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			}});
+		menu = new JMenu("Zoom");
 		menu.add(zoomIn);
 		menu.addSeparator();
 		menu.add(zoomOut);
-		
 		menuBar.add(menu);
-
-		this.setBounds(300,100,600,500);
+		
+		
+		this.setBounds(300, 100, 600, 500);
 		this.setTitle("Grafo");
-		zoomIn.addActionListener(this);
-		zoomOut.addActionListener(this);
-		
-		Layout<Integer, String> layout = new CircleLayout(g);
-		layout.setSize(new Dimension(300,300)); 
-		VisualizationViewer<Integer,String> vv = new VisualizationViewer<Integer,String>(layout);
-		vv.setPreferredSize(new Dimension(350,350));
-		
+
+		Layout<Integer, String> layout = new CircleLayout(grafo);
+		layout.setSize(new Dimension(300, 300));
+		VisualizationViewer<Integer, String> vv = new VisualizationViewer<Integer, String>(layout);
+		vv.setPreferredSize(new Dimension(350, 350));
+
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-		
+
 		DefaultModalGraphMouse gm = new DefaultModalGraphMouse();
 		vv.addKeyListener(gm.getModeKeyListener());
-	 
+
 		vv.setGraphMouse(gm);
-	
+
 		final PickedState<Integer> pickedState = vv.getPickedVertexState();
 		pickedState.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-					Object subject = e.getItem();
-					vertex = (String) subject;
-				}		
-			});
+				Object subject = e.getItem();
+				vertex = (String) subject;
+			}
+		});
 
 		this.setLayout(new BorderLayout());
 		this.add(menuBar, BorderLayout.NORTH);
 		this.getContentPane().add(vv);
 		this.pack();
-		this.setVisible(true); 
+		this.setVisible(true);
 
-    }
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		if(e.getSource() == zoomIn) {
-			System.out.println(vertex);
-		}
-		else if(e.getSource() == zoomOut) {
-			System.out.println(vertex);
-		}
 	}
+
+	private Dependencia adapterDI(DependenciaInterna di) {
+		Dependencia d = new Dependencia();
+		d.setGrafoJars(di.getDependenciasInternas());
+		d.setJar(di.getJarInterno());
+		return d;
+	}
+	
 }
