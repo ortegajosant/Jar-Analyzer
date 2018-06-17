@@ -1,4 +1,5 @@
 package com.jaranalyzer.interfaz;
+
 import java.io.File;
 
 import javax.swing.JFrame;
@@ -26,7 +27,6 @@ import sun.tools.jar.resources.jar;
 public class InterfazGrafica extends Application {
 	
     	private Dependencia jarGrafo;
-    	private Graph grafoJung;
     	private Pane layout = new Pane();
     	private Button btnagregarJAR = new Button("Añadir JAR");
     	private Button btnGrafo = new Button("Grafo");
@@ -111,9 +111,8 @@ public class InterfazGrafica extends Application {
             @Override
             public void handle(ActionEvent event){
             	if(jarGrafo != null) {
-            		grafoJung = Adapter.grafoJung(jarGrafo);
-                	DibujaGrafo dibujar = DibujaGrafo.getInstance();
-            		dibujar.DibujarGrafo(grafoJung);
+            		DibujaGrafo dibujar = new DibujaGrafo();
+            		dibujar.DibujarGrafo(jarGrafo);
             	}                 	
 
             }});

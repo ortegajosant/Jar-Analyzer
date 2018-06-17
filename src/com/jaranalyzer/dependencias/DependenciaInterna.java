@@ -138,12 +138,15 @@ public class DependenciaInterna {
 						}
 					}
 				}
-				dependenciasInternas.imprimirGrafo();
 			}
 		}
 	}
 
 	public Grafo getDependenciasInternas() {
 		return this.dependenciasInternas;
+	}
+	
+	public JarFile getJarInterno() {
+		return this.jarInterno;
 	}
 }

@@ -11,6 +11,10 @@ public class Dependencia {
 
 	private JarFile jar;
 	private Grafo grafoJars;
+	
+	public Dependencia() {
+		
+	}
 
 	public Dependencia(String urlJar) {
 		try {
