@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Rsrc-Class-Path: ./ jdom-2.0.6.jar json-simple-1.1.1.jar lastfm-bindin
+ gs-1.0.0.jar
+Class-Path: .
+Rsrc-Main-Class: com.odysseyserver.main.OdysseyLauncher
+Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader
+
