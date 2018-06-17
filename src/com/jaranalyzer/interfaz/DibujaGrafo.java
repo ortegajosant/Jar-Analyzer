@@ -26,23 +26,16 @@ import com.jaranalyzer.dependencias.DependenciaInterna;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
-import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
-import edu.uci.ics.jung.visualization.control.ModalGraphMouse.Mode;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
-import javafx.application.Application;
-import javafx.embed.swing.SwingNode;
-import javafx.scene.layout.Pane;
 
+
+@SuppressWarnings("serial")
 public class DibujaGrafo extends JFrame {
 
-	private static DibujaGrafo instance;
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem zoomIn, zoomOut;
