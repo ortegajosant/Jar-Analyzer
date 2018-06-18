@@ -40,8 +40,8 @@ public class DibujaGrafo extends JFrame {
 	private JMenu menu;
 	private JMenuItem zoomIn, zoomOut;
 	private String vertex = "";
-	private Dependencia dependencia;
 	private Graph grafo;
+	Layout<Integer, String> layout;
 
 	public DibujaGrafo(String jarActual) {
 		this.jarActual = jarActual;
@@ -49,11 +49,11 @@ public class DibujaGrafo extends JFrame {
 	
 	public void DibujarGrafo(Dependencia dependencia) {
 
-		this.dependencia = dependencia;
-
+		this.grafo = Adapter.grafoJung(dependencia);
 		
-		grafo = Adapter.grafoJung(dependencia);
-
+		layout = new CircleLayout(grafo);
+		layout.setSize(new Dimension(300, 300));
+		
 		menuBar = new JMenuBar();
 		zoomOut = new JMenuItem("Out");
 		zoomIn = new JMenuItem("In");
@@ -92,8 +92,6 @@ public class DibujaGrafo extends JFrame {
 		this.setBounds(300, 100, 600, 500);
 		this.setTitle("Grafo");
 
-		Layout<Integer, String> layout = new CircleLayout(grafo);
-		layout.setSize(new Dimension(300, 300));
 		VisualizationViewer<Integer, String> vv = new VisualizationViewer<Integer, String>(layout);
 		vv.setPreferredSize(new Dimension(350, 350));
 
