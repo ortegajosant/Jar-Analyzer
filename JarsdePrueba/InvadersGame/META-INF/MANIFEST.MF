@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Rsrc-Class-Path: ./ gdx-backend-lwjgl-1.9.8.jar gdx-box2d-platform-1.9
+ .8-natives-desktop.jar gdx-box2d-1.9.8.jar gdx-platform-1.9.8-natives
+ -desktop.jar gdx-1.9.8.jar jlayer-1.0.1-gdx.jar jinput-platform-2.0.5
+ -natives-windows.jar jinput-platform-2.0.5-natives-osx.jar jinput-pla
+ tform-2.0.5-natives-linux.jar jinput-2.0.5.jar jutils-1.0.0.jar jorbi
+ s-0.0.17.jar lwjgl-platform-2.9.2-natives-windows.jar lwjgl-platform-
+ 2.9.2-natives-linux.jar lwjgl-platform-2.9.2-natives-osx.jar lwjgl-2.
+ 9.2.jar lwjgl_util-2.9.2.jar
+Class-Path: .
+Rsrc-Main-Class: com.jose.graph.desktop.DesktopLauncher
+Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader
+
