@@ -14,6 +14,17 @@ import java.util.zip.ZipEntry;
  * @author jorte
  */
 public class JarExtractor {
+//	/**
+//	 * @param args
+//	 *            the first arg should be the path to the parent jar file, and the
+//	 *            second should be the directory where child jar files are
+//	 *            extracted.
+//	 */
+//	public static void main(String[] args) {
+//		JarExtractor ex = new JarExtractor("C:\\Users\\jorte\\Desktop\\InvadersGame.jar", "jarInterno",
+//				"gdx-1.9.8.jar");
+//		ex.parseJarFile();
+//	}
 
 	private String parentPath = null;
 	private String extractPath = ".";
@@ -94,8 +105,11 @@ public class JarExtractor {
 				if (entryName == null) {
 					continue;
 				} else if (entryName.endsWith(jarInterno)) {
+					// Found a child jar file inside the parent.
 					File f = extractJarFileFromJar(jarFile, entry);
 					if (f != null) {
+						// Try to extract descendant jar files from the child
+						// jar recursively.
 						parseJarFile(f);
 					}
 				}
