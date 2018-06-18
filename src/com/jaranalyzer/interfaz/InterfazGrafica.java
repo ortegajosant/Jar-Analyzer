@@ -3,10 +3,8 @@ package com.jaranalyzer.interfaz;
 import java.io.File;
 
 import javax.swing.JFrame;
-
 import com.jaranalyzer.adapter.Adapter;
 import com.jaranalyzer.dependencias.Dependencia;
-
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
 import javafx.application.Application;
@@ -144,7 +142,7 @@ public class InterfazGrafica extends Application {
             @Override
             public void handle(ActionEvent event){
             	if(jarGrafo != null) {
-            		DibujaGrafo dibujar = new DibujaGrafo();
+            		DibujaGrafo dibujar = new DibujaGrafo(jarGrafo.getGrafo().getVertices().find(0).getId());
             		dibujar.DibujarGrafo(jarGrafo);
             	}                 	
 
