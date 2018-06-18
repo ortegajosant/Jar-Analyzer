@@ -44,23 +44,32 @@ public class DependenciasClases {
 			while (!WorksetInitializer.initWorksetAndWait(ws)) {}
 
 			infoClases = ws.getAllContainedClasses();
-			ClassInformation[] dependencias;
 			grafoClases = new Grafo();
 
 			for (ClassInformation info : infoClases)
 			{
 				System.out.println(info.getClassName());
-				grafoClases.agregarVertice(info.getClassName(), "");
-				dependencias = info.getReferredClassesArray();
-				for (ClassInformation dep : dependencias) {
-					System.out.println("\t> "+dep.getClassName());
-					grafoClases.agregarVertice(dep.getClassName(), "");
-					System.out.println(grafoClases.agregarArista(info.getClassName(), info.getClassName()));
+				String [] nameTokens;
+				for(ClassInformation dependencia : info.getReferredClassesArray()) {
+					nameTokens = dependencia.getName().split("\\.");
+					if(!nameTokens[0].equals("java") && !nameTokens[1].equals("lang")) {
+						grafoClases.agregarVertice(dependencia.getClassName(), "");
+						grafoClases.agregarArista(info.getClassName(), dependencia.getClassName());
+					}
 				}
+				
+				
+//				grafoClases.agregarVertice(info.getClassName(), "");
+//				dependencias = info.getReferredClassesArray();
+//				for (ClassInformation dep : dependencias) {
+//					System.out.println("\t> "+dep.getClassName());
+//					grafoClases.agregarVertice(dep.getClassName(), "");
+//					System.out.println(grafoClases.agregarArista(info.getClassName(), info.getClassName()));
+//				}
 			}
-
-			System.out.println("Cant. Paquetes: "+ws.getNumberOfContainedPackages());
-			System.out.println("Cant. Clases: "+ws.getNumberOfContainedClasses());
+//
+//			System.out.println("Cant. Paquetes: "+ws.getNumberOfContainedPackages());
+//			System.out.println("Cant. Clases: "+ws.getNumberOfContainedClasses());
 
 			generarGrafoClases();
 			
@@ -75,14 +84,14 @@ public class DependenciasClases {
 		grafoClases = new Grafo();
 		ClassInformation[] dependencias;
 		for(ClassInformation clase : infoClases) {
-			grafoClases.agregarVertice(clase.getClassName(), "");
-			dependencias = clase.getReferredClassesArray();
-			System.out.println(dependencias + " - "+dependencias.length);
-			for(ClassInformation dependencia : dependencias) {
-				grafoClases.agregarVertice(dependencia.getClassName(), "");
-				System.out.println(grafoClases.agregarArista(clase.getClassName(), dependencia.getClassName()));
+			String [] nameTokens;	
+			for(ClassInformation dependencia :  clase.getReferredClassesArray()) {
+				nameTokens = dependencia.getName().split("\\.");
+				if(!nameTokens[0].equals("java") && !nameTokens[1].equals("lang")) {
+					grafoClases.agregarVertice(dependencia.getClassName(), "");
+					grafoClases.agregarArista(clase.getClassName(), dependencia.getClassName());
+				}
 			}
 		}
 	}
-
 }
