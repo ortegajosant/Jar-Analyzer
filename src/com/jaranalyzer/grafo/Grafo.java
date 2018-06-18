@@ -74,25 +74,20 @@ public class Grafo {
 	
 	private void esConexoAux(String inicial, SimpleList<NodoGrafo> visitados) {
 
-		NodoGrafo verticeActual = buscarVertice(inicial); // Busca el vértice inicial para el recorrido en la lista de
-															// vértices
-		while (verticeActual != null) // Ciclo para verificar que todos los vértices estén visitados
+		NodoGrafo verticeActual = buscarVertice(inicial); 
+		while (verticeActual != null) 
 		{
-			// Si el nodo inicial no está visitado
 			if (!verticeActual.getVisitado()) {
-				verticeActual.setVisitado(true); // Lo actualiza como visitado
+				verticeActual.setVisitado(true);
 			}
 
-			// Revisa todos los nodos adyacentes del nodo recién visitado
+			
 			for (int j = 0; j < verticeActual.getAristas().getLength(); j++) {
-				if (!buscarVertice(verticeActual.getAristas().find(j)).getVisitado()) // Si el nodo adyacente no está
-																						// visitado
+				if (!buscarVertice(verticeActual.getAristas().find(j)).getVisitado()) 
 				{
-					esConexoAux(verticeActual.getAristas().find(j), visitados); // Hace la llamada recursiva para realizar el
-																	// recorrido en el
+					esConexoAux(verticeActual.getAristas().find(j), visitados); 
 				}
 			}
-			// Verifica si queda algún nodo sin visitar
 			if (!visitados.contains(verticeActual)) {
 				visitados.add(new SimpleNode<NodoGrafo>(verticeActual));
 			}
