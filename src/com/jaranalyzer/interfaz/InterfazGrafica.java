@@ -36,6 +36,12 @@ public class InterfazGrafica extends Application {
     	private Label lblRankRef = new Label("Ranking de Referencias");
     	private Label jarActual = new Label();
     	private Label lblJar = new Label();
+    	private Label lblGradoSaliente = new Label();
+    	private Label lblGradoEntrante = new Label();
+    	private Label lblGS = new Label();
+    	private Label lblGE = new Label();
+    	private Label lblEsConexo = new Label();
+    	private Label lblConexo = new Label();
 
     
 	public static void main(String[] args) {
@@ -48,18 +54,17 @@ public class InterfazGrafica extends Application {
         primaryStage.setTitle("JarAnalyzer");
 
         btnagregarJAR.setLayoutX(350);
-        btnagregarJAR.setLayoutY(270);
+        btnagregarJAR.setLayoutY(330);
         
-        btnGrafo.setLayoutX(300);
-        btnGrafo.setLayoutY(270);
+        btnGrafo.setLayoutX(365);
+        btnGrafo.setLayoutY(300);
                       
-        //Listas
+        //Listas y Labels
                         
         lblRankDep.setLayoutX(27);
         lblRankDep.setLayoutY(7);
         lblRankDep.setFont(Font.font("Centurie Gothic", 14));
         lblRankDep.setTextFill(Color.CHOCOLATE);
-        lstRankingDep.getItems().add("Hello World");
         lstRankingDep.setLayoutX(10);
         lstRankingDep.setLayoutY(25);
         lstRankingDep.setMaxWidth(200);
@@ -69,23 +74,51 @@ public class InterfazGrafica extends Application {
         lblRankRef.setLayoutY(7);
         lblRankRef.setFont(Font.font("Centurie Gothic", 14));
         lblRankRef.setTextFill(Color.CHOCOLATE);
-        lstRankingRef.getItems().add("Hello World");
         lstRankingRef.setLayoutX(220);
         lstRankingRef.setLayoutY(25);
         lstRankingRef.setMaxWidth(200);
         lstRankingRef.setMaxHeight(200);
         
-        jarActual.setLayoutX(100);
-        jarActual.setLayoutY(240);
+        jarActual.setLayoutX(110);
+        jarActual.setLayoutY(338);
     	jarActual.setText("(Ninguno)");
         jarActual.setFont(Font.font("Centurie Gothic", 12));
-        jarActual.setTextFill(Color.BLACK);
-        
-        lblJar.setLayoutX(5);
-        lblJar.setLayoutY(240);
+
+        lblJar.setLayoutX(15);
+        lblJar.setLayoutY(338);
         lblJar.setText("Jar Seleccionado:");
         lblJar.setFont(Font.font("Centurie Gothic", 12));
-        lblJar.setTextFill(Color.BLACK);
+        
+        lblGradoSaliente.setLayoutX(15);
+        lblGradoSaliente.setLayoutY(250);
+        lblGradoSaliente.setText("Grado Saliente: ");
+        lblGradoSaliente.setFont(Font.font("Centurie Gothic", 12));
+        
+        lblGS.setLayoutX(110);
+        lblGS.setLayoutY(250);
+        lblGS.setText("(Vacío)");
+        lblGS.setFont(Font.font("Centurie Gothic", 12));
+        
+        lblGE.setLayoutX(110);
+        lblGE.setLayoutY(270);
+        lblGE.setText("(Vacío)");
+        lblGE.setFont(Font.font("Centurie Gothic", 12));
+        
+        lblGradoEntrante.setLayoutX(15);
+        lblGradoEntrante.setLayoutY(270);
+        lblGradoEntrante.setText("Grado Entrante: ");
+        lblGradoEntrante.setFont(Font.font("Centurie Gothic", 12));
+        
+        lblEsConexo.setLayoutX(15);
+        lblEsConexo.setLayoutY(305);
+        lblEsConexo.setText("Conexo: ");
+        lblEsConexo.setFont(Font.font("Centurie Gothic", 12));
+        
+        lblConexo.setLayoutX(110);
+        lblConexo.setLayoutY(305);
+        lblConexo.setText("(Ninguno)");
+        lblConexo.setFont(Font.font("Centurie Gothic", 12));
+        //
         
         //Función del botón de agregar jar
         btnagregarJAR.setOnAction(new EventHandler<ActionEvent>(){  
@@ -123,9 +156,9 @@ public class InterfazGrafica extends Application {
 		layout.getChildren().add(lstRankingDep);
         layout.getChildren().add(lblRankDep);
         layout.getChildren().add(lblRankRef);
-        layout.getChildren().addAll(jarActual, lblJar);
+        layout.getChildren().addAll(jarActual, lblJar, lblGradoSaliente, lblGradoEntrante, lblGE, lblGS, lblEsConexo, lblConexo);
         layout.getChildren().addAll(btnagregarJAR, btnGrafo);
-		Scene scene = new Scene(layout, 430, 300);
+		Scene scene = new Scene(layout, 430, 360);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
