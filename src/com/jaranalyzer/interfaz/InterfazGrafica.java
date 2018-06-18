@@ -54,10 +54,10 @@ public class InterfazGrafica extends Application {
         primaryStage.setTitle("JarAnalyzer");
 
         btnagregarJAR.setLayoutX(350);
-        btnagregarJAR.setLayoutY(330);
+        btnagregarJAR.setLayoutY(300);
         
         btnGrafo.setLayoutX(365);
-        btnGrafo.setLayoutY(300);
+        btnGrafo.setLayoutY(270);
                       
         //Listas y Labels
                         
