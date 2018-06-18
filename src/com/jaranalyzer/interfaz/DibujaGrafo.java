@@ -61,10 +61,8 @@ public class DibujaGrafo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					System.out.println("Entre");
 					if(vertex.equals(jarActual)) {
-						DependenciasClases dc = new DependenciasClases(vertex);
-						dc.generarGrafoClases();
+						DependenciasClases dc = new DependenciasClases(dependencia.getJar().getName());
 						DibujarGrafo(Adapter.adapterDC(dc));
 					}
 					else {

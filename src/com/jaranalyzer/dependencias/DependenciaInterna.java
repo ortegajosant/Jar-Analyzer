@@ -74,7 +74,6 @@ public class DependenciaInterna {
 
 		JarFile jarFile = null;
 		try {
-			System.out.println(file);
 			jarFile = new JarFile(file);
 			Enumeration entries = jarFile.entries();
 
