@@ -1,6 +1,8 @@
 package com.jaranalyzer.adapter;
 
 import com.jaranalyzer.dependencias.Dependencia;
+import com.jaranalyzer.dependencias.DependenciaInterna;
+import com.jaranalyzer.dependencias.DependenciasClases;
 import com.jaranalyzer.grafo.NodoGrafo;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
@@ -29,4 +31,16 @@ public class Adapter {
 		return nuevoGrafo;
 	}
 
+	public static Dependencia adapterDI(DependenciaInterna di) {
+		Dependencia d = new Dependencia();
+		d.setGrafoJars(di.getDependenciasInternas());
+		d.setJar(di.getJarInterno());
+		return d;
+	}
+	
+	public static Dependencia adapterDC(DependenciasClases di) {
+		Dependencia d = new Dependencia();
+		d.setGrafoJars(di.getGrafoClases());
+		return d;
+	}
 }
