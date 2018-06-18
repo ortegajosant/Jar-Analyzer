@@ -15,12 +15,12 @@ public class PruebasJar {
 		
 		dependencia.getGrafo().imprimirGrafo();
 		
-		try {
-			DependenciaInterna interna = new DependenciaInterna(dependencia.getJar(), dependencia.obtenerDependenciaInterna("gdx-1.9.8.jar"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
+//		try {
+//			DependenciaInterna interna = new DependenciaInterna(dependencia.getJar(), dependencia.obtenerDependenciaInterna("gdx-1.9.8.jar"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	
     }
 }
