@@ -106,45 +106,29 @@ public class Grafo {
 	 * @return Boolean
 	 */
 	public boolean esConexo(String inicial) {
-
-		SimpleList<NodoGrafo> visitados = new SimpleList<>();
-
-		esConexoAux(inicial, visitados);
-
-		for (int i = 0; i < visitados.getLength(); i++) {
-			System.out.print(visitados.find(i).getId() + "-");
+		// SimpleList<NodoGrafo> visitados = new SimpleList<>();
+		esConexoAux(inicial);
+		System.out.println(vertices.getLength());
+		for (int i = 0; i < vertices.getLength(); i++) {
+			if (!vertices.find(i).getVisitado()) {
+				return false;
+			}
 		}
-
-		return visitados.getLength() == vertices.getLength();
-
+		return true;
 	}
 
-	private void esConexoAux(String inicial, SimpleList<NodoGrafo> visitados) {
-
-		NodoGrafo verticeActual = buscarVertice(inicial); // Busca el vértice inicial para el recorrido en la lista de
-															// vértices
-		while (verticeActual != null) // Ciclo para verificar que todos los vértices estén visitados
-		{
-			// Si el nodo inicial no está visitado
-			if (!verticeActual.getVisitado()) {
-				verticeActual.setVisitado(true); // Lo actualiza como visitado
-			}
-
-			// Revisa todos los nodos adyacentes del nodo recién visitado
+	private void esConexoAux(String inicial) {
+		NodoGrafo verticeActual = buscarVertice(inicial);
+		if (!verticeActual.getVisitado()) {
+			verticeActual.setVisitado(true);
 			for (int j = 0; j < verticeActual.getAristas().getLength(); j++) {
-				if (!buscarVertice(verticeActual.getAristas().find(j)).getVisitado()) // Si el nodo adyacente no está
-																						// visitado
-				{
-					esConexoAux(verticeActual.getAristas().find(j), visitados); // Hace la llamada recursiva para
-																				// realizar el
-					// recorrido en el
+				if (!buscarVertice(verticeActual.getAristas().find(j)).getVisitado()) {
+					esConexoAux(verticeActual.getAristas().find(j));
 				}
 			}
-			// Verifica si queda algún nodo sin visitar
-			if (!visitados.contains(verticeActual)) {
-				visitados.add(new SimpleNode<NodoGrafo>(verticeActual));
-			}
-			verticeActual = verticeNoVisitado();
+		}
+		if (!vertices.contains(verticeActual)) {
+			vertices.add(new SimpleNode<NodoGrafo>(verticeActual));
 		}
 	}
 
