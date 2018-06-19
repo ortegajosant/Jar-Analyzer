@@ -28,6 +28,15 @@ public class DependenciaInterna {
 	private Grafo dependenciasInternas;
 	private String dependenciaNombre;
 
+	/**
+	 * Constructor Dependencia Interna
+	 * 
+	 * @param jarFile
+	 *            El Jar principal
+	 * @param dependenciaInterna
+	 *            Nombre de la dependencia interna
+	 * @throws IOException
+	 */
 	public DependenciaInterna(JarFile jarFile, NodoGrafo dependenciaInterna) throws IOException {
 
 		JarExtractor extractor = new JarExtractor(jarFile.getName(), "jarInterno", dependenciaInterna.getId());
@@ -104,6 +113,9 @@ public class DependenciaInterna {
 		}
 	}
 
+	/**
+	 * Se genera el grafo interno
+	 */
 	public void generarGrafoInterno() {
 		SAXBuilder builder = new SAXBuilder();
 		File file = new File("jarInterno/pom.xml");
@@ -141,10 +153,20 @@ public class DependenciaInterna {
 		}
 	}
 
+	/**
+	 * Obtiene el grafo con las dependencias internas respectivas
+	 * 
+	 * @return Grafo
+	 */
 	public Grafo getDependenciasInternas() {
 		return this.dependenciasInternas;
 	}
-	
+
+	/**
+	 * Obtiene el Jar de la dependencia interna
+	 * 
+	 * @return JarFile
+	 */
 	public JarFile getJarInterno() {
 		return this.jarInterno;
 	}

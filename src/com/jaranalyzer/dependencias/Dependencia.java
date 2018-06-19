@@ -7,6 +7,12 @@ import java.util.jar.Manifest;
 import com.jaranalyzer.grafo.Grafo;
 import com.jaranalyzer.grafo.NodoGrafo;
 
+/**
+ * Genera las dependencias del Jar Principal
+ * 
+ * @author jorte
+ *
+ */
 public class Dependencia {
 
 	private JarFile jar;
@@ -16,6 +22,12 @@ public class Dependencia {
 
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @param urlJar
+	 *            Path donde se encuentra el archivo
+	 */
 	public Dependencia(String urlJar) {
 		try {
 			this.jar = new JarFile(urlJar);
@@ -24,6 +36,9 @@ public class Dependencia {
 		}
 	}
 
+	/**
+	 * Se genera el grafo logico
+	 */
 	public void generarGrafoJars() {
 		grafoJars = new Grafo();
 		Manifest manifest = null;
@@ -60,7 +75,8 @@ public class Dependencia {
 					for (int j = 1; j < temp.getDependenciasInternas().getNumeroNodos(); j++) {
 						grafoJars.agregarVertice(temp.getDependenciasInternas().getVertices().find(j).getId(),
 								temp.getDependenciasInternas().getVertices().find(j).getUrl());
-						grafoJars.agregarArista(grafoJars.getVertices().find(i).getId(), temp.getDependenciasInternas().getVertices().find(j).getId());
+						grafoJars.agregarArista(grafoJars.getVertices().find(i).getId(),
+								temp.getDependenciasInternas().getVertices().find(j).getId());
 					}
 				}
 			} catch (IOException e) {
@@ -69,26 +85,59 @@ public class Dependencia {
 		}
 	}
 
+	/**
+	 * Obtiene el grafo
+	 * 
+	 * @return Grafo
+	 */
 	public Grafo getGrafo() {
 		return this.grafoJars;
 	}
 
+	/**
+	 * Obtiene el vertice del grafo
+	 * 
+	 * @param vertice
+	 *            String con el nombre del vertice
+	 * @return
+	 */
 	public NodoGrafo obtenerDependenciaInterna(String vertice) {
 		return grafoJars.buscarVertice(vertice);
 	}
 
+	/**
+	 * Obtiene el jar
+	 * 
+	 * @return JarFile
+	 */
 	public JarFile getJar() {
 		return jar;
 	}
 
+	/**
+	 * Modificar el Jar de la dependecia
+	 * 
+	 * @param jar
+	 */
 	public void setJar(JarFile jar) {
 		this.jar = jar;
 	}
 
+	/**
+	 * Obtiene el valor del grafo del jar
+	 * 
+	 * @return Grafo
+	 */
 	public Grafo getGrafoJars() {
 		return grafoJars;
 	}
 
+	/**
+	 * Configura el valor de los jars
+	 * 
+	 * @param grafoJars
+	 *            Grafo
+	 */
 	public void setGrafoJars(Grafo grafoJars) {
 		this.grafoJars = grafoJars;
 	}

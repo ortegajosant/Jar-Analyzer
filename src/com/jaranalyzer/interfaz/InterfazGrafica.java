@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 import sun.tools.jar.resources.jar;
 
 /**
- * Contiene el main Clase encargada de toda la interfaz gr醘ica que se le
+ * Contiene el main Clase encargada de toda la interfaz gr谩fica que se le
  * muestra al usuario
  * 
  * @author andrey
@@ -40,7 +40,7 @@ public class InterfazGrafica extends Application {
 	// Atributos
 	private Dependencia jarGrafo;
 	private Pane layout = new Pane();
-	private Button btnagregarJAR = new Button("A馻dir JAR");
+	private Button btnagregarJAR = new Button("A帽adir JAR");
 	private Button btnGrafo = new Button("Grafo");
 	private ListView lstRankingDep = new ListView();
 	private ListView lstRankingRef = new ListView();
@@ -111,14 +111,15 @@ public class InterfazGrafica extends Application {
 		lblGradoSaliente.setFont(Font.font("Centurie Gothic", 12));
 
 		lblGS.setLayoutX(110);
+
 		lblGS.setLayoutY(240);
-		lblGS.getItems().add("(Vac韔)");
+		lblGS.getItems().add("(Vac铆o)");
 		lblGS.setMaxWidth(60);
 		lblGS.setMaxHeight(28);
 
 		lblGE.setLayoutX(110);
 		lblGE.setLayoutY(270);
-		lblGE.getItems().add("(Vac韔)");
+		lblGE.getItems().add("(Vac铆o)");
 		lblGE.setMaxWidth(60);
 		lblGE.setMaxHeight(28);
 
@@ -139,7 +140,7 @@ public class InterfazGrafica extends Application {
 
 		//
 
-		// Funci髇 del bot髇 de agregar jar
+		// Funci贸n del bot贸n de agregar jar
 		btnagregarJAR.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -156,7 +157,7 @@ public class InterfazGrafica extends Application {
 				}
 			}
 		});
-		// Fin de la funci髇
+		// Fin de la funci贸n
 
 		// Funcion del boton para mostrar el grafo
 		btnGrafo.setOnAction(new EventHandler<ActionEvent>() {
@@ -169,7 +170,7 @@ public class InterfazGrafica extends Application {
 
 			}
 		});
-		// Fin de la funci髇
+		// Fin de la funci贸n
 
 		layout.getChildren().add(lstRankingRef);
 		layout.getChildren().add(lstRankingDep);
@@ -223,7 +224,6 @@ public class InterfazGrafica extends Application {
 		
 		lblGE.getItems().add(temp.getGradoEntrante());
 		lblGS.getItems().add(temp.getGradoSaliente());
-
 	}
 
 }

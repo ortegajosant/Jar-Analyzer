@@ -52,14 +52,30 @@ public class ObjetoRanking {
 		return this.gradoSaliente;
 	}
 
+	/**
+	 * Establece el valor del id vel vertice
+	 * 
+	 * @param id
+	 *            String con el nombre
+	 */
 	public void setID(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * Obtiene el ID del vertice
+	 * 
+	 * @return String / nombre del vertice
+	 */
 	public String getID() {
 		return this.id;
 	}
 
+	/**
+	 * Retorna el grado de entrante del vértice
+	 * 
+	 * @return Integer
+	 */
 	public int getGradoEntrante() {
 		return this.gradoEntrante;
 	}
