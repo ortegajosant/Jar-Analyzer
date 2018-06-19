@@ -124,29 +124,4 @@ public class Ranking {
 		return this.grados;
 	}
 
-	/**
-	 * Devuelve una lista ordenada con las referencias
-	 */
-	public SimpleList RankingEntrante() {
-		ordenarRankingEntrante();
-		SimpleList entrante = new SimpleList();
-		for (int i = 0; i < grados.getLength(); i++) {
-			SimpleNode<String> nodo = new SimpleNode<String>(grados.find(i).getID() + " -> " + grados.find(i).getGradoEntrante());
-		}
-		return entrante;
-	}
-	
-	/**
-	 * Devuelve una lista ordenada con las dependencias
-	 */
-	public SimpleList RankingSaliente() {
-		ordenarRankingSaliente();
-		SimpleList saliente = new SimpleList();
-		for (int i = 0; i < grados.getLength(); i++) {
-			SimpleNode<String> nodo = new SimpleNode<String>(grados.find(i).getID() + " -> " + grados.find(i).getGradoSaliente());
-			saliente.add(nodo);
-		}
-		return saliente;
-	}
-
 }

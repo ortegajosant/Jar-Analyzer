@@ -8,6 +8,11 @@ import org.pfsw.tools.cda.base.model.workset.ClasspathPartDefinition;
 import org.pfsw.tools.cda.core.init.WorksetInitializer;
 import com.jaranalyzer.grafo.Grafo;
 
+/**
+ * Clase que entra a las clases de las dependencias
+ * @author stephanie
+ *
+ */
 public class DependenciasClases {
 
 	private ClassInformation[] infoClases;

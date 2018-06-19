@@ -50,8 +50,8 @@ public class InterfazGrafica extends Application {
 	private Label lblJar = new Label();
 	private Label lblGradoSaliente = new Label();
 	private Label lblGradoEntrante = new Label();
-	private static Label lblGS = new Label();
-	private static Label lblGE = new Label();
+	private static ListView lblGS = new ListView();
+	private static ListView lblGE = new ListView();
 	private Label lblEsConexo = new Label();
 	private Label lblConexo = new Label();
 	private static Ranking ranking;
@@ -61,6 +61,7 @@ public class InterfazGrafica extends Application {
 		launch(args);
 	}
 
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
@@ -71,6 +72,8 @@ public class InterfazGrafica extends Application {
 
 		btnGrafo.setLayoutX(365);
 		btnGrafo.setLayoutY(270);
+		
+		primaryStage.setResizable(false);
 
 		// Listas y Labels
 
@@ -108,14 +111,16 @@ public class InterfazGrafica extends Application {
 		lblGradoSaliente.setFont(Font.font("Centurie Gothic", 12));
 
 		lblGS.setLayoutX(110);
-		lblGS.setLayoutY(250);
-		//lblGS.setText("(Vacío)");
-		lblGS.setFont(Font.font("Centurie Gothic", 12));
+		lblGS.setLayoutY(240);
+		lblGS.getItems().add("(Vacío)");
+		lblGS.setMaxWidth(60);
+		lblGS.setMaxHeight(28);
 
 		lblGE.setLayoutX(110);
 		lblGE.setLayoutY(270);
-		//lblGE.setText("(Vacío)");
-		lblGE.setFont(Font.font("Centurie Gothic", 12));
+		lblGE.getItems().add("(Vacío)");
+		lblGE.setMaxWidth(60);
+		lblGE.setMaxHeight(28);
 
 		lblGradoEntrante.setLayoutX(15);
 		lblGradoEntrante.setLayoutY(270);
@@ -212,10 +217,12 @@ public class InterfazGrafica extends Application {
 	public static void muestraGrado(String nombre) {
 
 		ObjetoRanking temp = ranking.obtenerVertice(nombre);
+
+		lblGE.getItems().clear();
+		lblGS.getItems().clear();
 		
-		System.out.println("entré");
-		lblGE.setText("" + temp.getGradoEntrante());
-		lblGS.setText("" + temp.getGradoSaliente());
+		lblGE.getItems().add(temp.getGradoEntrante());
+		lblGS.getItems().add(temp.getGradoSaliente());
 
 	}
 
