@@ -61,7 +61,6 @@ public class InterfazGrafica extends Application {
 		launch(args);
 	}
 
-	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
@@ -72,7 +71,7 @@ public class InterfazGrafica extends Application {
 
 		btnGrafo.setLayoutX(365);
 		btnGrafo.setLayoutY(270);
-		
+
 		primaryStage.setResizable(false);
 
 		// Listas y Labels
@@ -211,7 +210,7 @@ public class InterfazGrafica extends Application {
 
 		for (int i = 0; i < ranking.getSaliente().getLength(); i++) {
 			lstRankingDep.getItems().add(
-					ranking.getSaliente().find(i).getID() + "->" + ranking.getSaliente().find(i).getGradoEntrante());
+					ranking.getSaliente().find(i).getID() + "->" + ranking.getSaliente().find(i).getGradoSaliente());
 		}
 	}
 
@@ -221,7 +220,7 @@ public class InterfazGrafica extends Application {
 
 		lblGE.getItems().clear();
 		lblGS.getItems().clear();
-		
+
 		lblGE.getItems().add(temp.getGradoEntrante());
 		lblGS.getItems().add(temp.getGradoSaliente());
 	}
