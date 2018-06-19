@@ -1,7 +1,6 @@
 package com.jaranalyzer.grafo;
 
 public class MainPruebaGrafo {
-	
 	public static void main(String [] args) {
 		Grafo grafo = new Grafo();
 		
@@ -14,12 +13,13 @@ public class MainPruebaGrafo {
 		
 		grafo.agregarArista("a", "b");
 		grafo.agregarArista("b", "c");
-		grafo.agregarArista("c", "d");
+		grafo.agregarArista("c", "e");
+		grafo.agregarArista("c", "a");
 		grafo.agregarArista("d", "e");
-		grafo.agregarArista("d", "f");
+		grafo.agregarArista("e", "f");
 		grafo.agregarArista("f", "a");
 		
 		grafo.imprimirGrafo();
+		System.out.println(grafo.esConexo("c"));
 	}
-
 }
