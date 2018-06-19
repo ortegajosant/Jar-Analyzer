@@ -70,7 +70,8 @@ public class DibujaGrafo extends JFrame {
 				try {
 					if(vertex.equals(jarActual)) {
 						DependenciasClases dc = new DependenciasClases(dependencia.getJar().getName());
-						DibujarGrafo(Adapter.adapterDC(dc));
+						DibujaGrafo nuevo = new DibujaGrafo(jarActual);
+						nuevo.DibujarGrafo(Adapter.adapterDC(dc));
 						InterfazGrafica.muestraGrado(vertex);
 					}
 					else {
