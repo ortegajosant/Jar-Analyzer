@@ -10,6 +10,7 @@ import com.jaranalyzer.dependencias.Ranking;
 import com.jaranalyzer.grafo.Grafo;
 import com.jaranalyzer.listas.SimpleList;
 import com.jaranalyzer.listas.SimpleNode;
+import com.sun.media.jfxmediaimpl.platform.Platform;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
@@ -40,7 +41,7 @@ public class InterfazGrafica extends Application {
 	// Atributos
 	private Dependencia jarGrafo;
 	private Pane layout = new Pane();
-	private Button btnagregarJAR = new Button("Añadir JAR");
+	private Button btnagregarJAR = new Button("A�adir JAR");
 	private Button btnGrafo = new Button("Grafo");
 	private ListView lstRankingDep = new ListView();
 	private ListView lstRankingRef = new ListView();
@@ -110,17 +111,16 @@ public class InterfazGrafica extends Application {
 		lblGradoSaliente.setFont(Font.font("Centurie Gothic", 12));
 
 		lblGS.setLayoutX(110);
-
 		lblGS.setLayoutY(240);
-		lblGS.getItems().add("(Vacío)");
-		lblGS.setMaxWidth(60);
-		lblGS.setMaxHeight(28);
+		lblGS.getItems().add("(Vacio)");
+		lblGS.setMaxWidth(65);
+		lblGS.setMaxHeight(30);
 
 		lblGE.setLayoutX(110);
 		lblGE.setLayoutY(270);
-		lblGE.getItems().add("(Vacío)");
-		lblGE.setMaxWidth(60);
-		lblGE.setMaxHeight(28);
+		lblGE.getItems().add("(Vacio)");
+		lblGE.setMaxWidth(65);
+		lblGE.setMaxHeight(30);
 
 		lblGradoEntrante.setLayoutX(15);
 		lblGradoEntrante.setLayoutY(270);
@@ -213,16 +213,16 @@ public class InterfazGrafica extends Application {
 					ranking.getSaliente().find(i).getID() + "->" + ranking.getSaliente().find(i).getGradoSaliente());
 		}
 	}
-
+	
+	
 	public static void muestraGrado(String nombre) {
-
+	
 		ObjetoRanking temp = ranking.obtenerVertice(nombre);
-
+	
 		lblGE.getItems().clear();
 		lblGS.getItems().clear();
-
+	
 		lblGE.getItems().add(temp.getGradoEntrante());
 		lblGS.getItems().add(temp.getGradoSaliente());
 	}
-
 }
