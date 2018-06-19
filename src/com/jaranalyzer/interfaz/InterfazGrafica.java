@@ -109,12 +109,12 @@ public class InterfazGrafica extends Application {
 
 		lblGS.setLayoutX(110);
 		lblGS.setLayoutY(250);
-		//lblGS.setText("(Vacío)");
+		// lblGS.setText("(Vacío)");
 		lblGS.setFont(Font.font("Centurie Gothic", 12));
 
 		lblGE.setLayoutX(110);
 		lblGE.setLayoutY(270);
-		//lblGE.setText("(Vacío)");
+		// lblGE.setText("(Vacío)");
 		lblGE.setFont(Font.font("Centurie Gothic", 12));
 
 		lblGradoEntrante.setLayoutX(15);
@@ -212,7 +212,7 @@ public class InterfazGrafica extends Application {
 	public static void muestraGrado(String nombre) {
 
 		ObjetoRanking temp = ranking.obtenerVertice(nombre);
-		
+
 		System.out.println("entré");
 		lblGE.setText("" + temp.getGradoEntrante());
 		lblGS.setText("" + temp.getGradoSaliente());
