@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 import sun.tools.jar.resources.jar;
 
 /**
- * Contiene el main Clase encargada de toda la interfaz gráfica que se le
+ * Contiene el main Clase encargada de toda la interfaz grÃ¡fica que se le
  * muestra al usuario
  * 
  * @author andrey
@@ -40,7 +40,7 @@ public class InterfazGrafica extends Application {
 	// Atributos
 	private Dependencia jarGrafo;
 	private Pane layout = new Pane();
-	private Button btnagregarJAR = new Button("Añadir JAR");
+	private Button btnagregarJAR = new Button("AÃ±adir JAR");
 	private Button btnGrafo = new Button("Grafo");
 	private ListView lstRankingDep = new ListView();
 	private ListView lstRankingRef = new ListView();
@@ -50,8 +50,8 @@ public class InterfazGrafica extends Application {
 	private Label lblJar = new Label();
 	private Label lblGradoSaliente = new Label();
 	private Label lblGradoEntrante = new Label();
-	private static Label lblGS = new Label();
-	private static Label lblGE = new Label();
+	private static ListView lblGS = new ListView();
+	private static ListView lblGE = new ListView();
 	private Label lblEsConexo = new Label();
 	private Label lblConexo = new Label();
 	private static Ranking ranking;
@@ -61,6 +61,7 @@ public class InterfazGrafica extends Application {
 		launch(args);
 	}
 
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
@@ -71,6 +72,8 @@ public class InterfazGrafica extends Application {
 
 		btnGrafo.setLayoutX(365);
 		btnGrafo.setLayoutY(270);
+		
+		primaryStage.setResizable(false);
 
 		// Listas y Labels
 
@@ -108,14 +111,17 @@ public class InterfazGrafica extends Application {
 		lblGradoSaliente.setFont(Font.font("Centurie Gothic", 12));
 
 		lblGS.setLayoutX(110);
-		lblGS.setLayoutY(250);
-		// lblGS.setText("(Vacío)");
-		lblGS.setFont(Font.font("Centurie Gothic", 12));
+
+		lblGS.setLayoutY(240);
+		lblGS.getItems().add("(VacÃ­o)");
+		lblGS.setMaxWidth(60);
+		lblGS.setMaxHeight(28);
 
 		lblGE.setLayoutX(110);
 		lblGE.setLayoutY(270);
-		// lblGE.setText("(Vacío)");
-		lblGE.setFont(Font.font("Centurie Gothic", 12));
+		lblGE.getItems().add("(VacÃ­o)");
+		lblGE.setMaxWidth(60);
+		lblGE.setMaxHeight(28);
 
 		lblGradoEntrante.setLayoutX(15);
 		lblGradoEntrante.setLayoutY(270);
@@ -134,7 +140,7 @@ public class InterfazGrafica extends Application {
 
 		//
 
-		// Función del botón de agregar jar
+		// FunciÃ³n del botÃ³n de agregar jar
 		btnagregarJAR.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -151,7 +157,7 @@ public class InterfazGrafica extends Application {
 				}
 			}
 		});
-		// Fin de la función
+		// Fin de la funciÃ³n
 
 		// Funcion del boton para mostrar el grafo
 		btnGrafo.setOnAction(new EventHandler<ActionEvent>() {
@@ -164,7 +170,7 @@ public class InterfazGrafica extends Application {
 
 			}
 		});
-		// Fin de la función
+		// Fin de la funciÃ³n
 
 		layout.getChildren().add(lstRankingRef);
 		layout.getChildren().add(lstRankingDep);
@@ -213,10 +219,11 @@ public class InterfazGrafica extends Application {
 
 		ObjetoRanking temp = ranking.obtenerVertice(nombre);
 
-		System.out.println("entré");
-		lblGE.setText("" + temp.getGradoEntrante());
-		lblGS.setText("" + temp.getGradoSaliente());
-
+		lblGE.getItems().clear();
+		lblGS.getItems().clear();
+		
+		lblGE.getItems().add(temp.getGradoEntrante());
+		lblGS.getItems().add(temp.getGradoSaliente());
 	}
 
 }

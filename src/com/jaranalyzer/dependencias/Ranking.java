@@ -89,7 +89,7 @@ public class Ranking {
 	}
 
 	/**
-	 * Obtiene un vertice en específico para analizar sus entradas y salidas
+	 * Obtiene un vertice en especÃ­fico para analizar sus entradas y salidas
 	 * 
 	 * @param Nombre
 	 *            del vertice a evaluar
@@ -150,5 +150,4 @@ public class Ranking {
 		}
 		return saliente;
 	}
-
 }
