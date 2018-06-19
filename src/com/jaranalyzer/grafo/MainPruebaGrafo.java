@@ -20,6 +20,6 @@ public class MainPruebaGrafo {
 		grafo.agregarArista("f", "a");
 		
 		grafo.imprimirGrafo();
-		System.out.println(grafo.esConexo("c"));
+		System.out.println(grafo.esConexo());
 	}
 }

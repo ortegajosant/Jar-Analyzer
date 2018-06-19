@@ -72,14 +72,15 @@ public class DibujaGrafo extends JFrame {
 						DependenciasClases dc = new DependenciasClases(dependencia.getJar().getName());
 						DibujaGrafo nuevo = new DibujaGrafo(jarActual);
 						nuevo.DibujarGrafo(Adapter.adapterDC(dc));
-						InterfazGrafica.muestraGrado(vertex);
+						InterfazGrafica.muestraGrado(vertex, dc.getGrafoClases());
+						InterfazGrafica.muestraListas(dc.getGrafoClases());
 					}
 					else {
 						DependenciaInterna di = new DependenciaInterna(dependencia.getJar(),
 								dependencia.obtenerDependenciaInterna(vertex));
 						if (di.getDependenciasInternas() != null) {
 							DibujarGrafo(Adapter.adapterDI(di));
-							InterfazGrafica.muestraGrado(vertex);
+							InterfazGrafica.muestraGrado(vertex, di.getDependenciasInternas());
 						}
 					}
 				} catch (IOException e1) {
