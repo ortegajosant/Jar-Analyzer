@@ -43,8 +43,8 @@ public class InterfazGrafica extends Application {
 	private Pane layout = new Pane();
 	private Button btnagregarJAR = new Button("Añadir JAR");
 	private Button btnGrafo = new Button("Grafo");
-	private ListView lstRankingDep = new ListView();
-	private ListView lstRankingRef = new ListView();
+	private static ListView lstRankingDep = new ListView();
+	private static ListView lstRankingRef = new ListView();
 	private Label lblRankDep = new Label("Ranking de Dependencias");
 	private Label lblRankRef = new Label("Ranking de Referencias");
 	private Label jarActual = new Label();
@@ -53,7 +53,7 @@ public class InterfazGrafica extends Application {
 	private Label lblGradoEntrante = new Label();
 	private static ListView lblGS = new ListView();
 	private static ListView lblGE = new ListView();
-	private Label lblEsConexo = new Label();
+	private static ListView lblEsConexo = new ListView();
 	private Label lblConexo = new Label();
 	private static Ranking ranking;
 	//
@@ -127,14 +127,15 @@ public class InterfazGrafica extends Application {
 		lblGradoEntrante.setText("Grado Entrante: ");
 		lblGradoEntrante.setFont(Font.font("Centurie Gothic", 12));
 
-		lblEsConexo.setLayoutX(15);
+		lblEsConexo.setLayoutX(110);
 		lblEsConexo.setLayoutY(305);
-		lblEsConexo.setText("Conexo: ");
-		lblEsConexo.setFont(Font.font("Centurie Gothic", 12));
+		lblEsConexo.getItems().add("(Ninguno)");
+		lblEsConexo.setMaxWidth(70);
+		lblEsConexo.setMaxHeight(28);
 
-		lblConexo.setLayoutX(110);
+		lblConexo.setLayoutX(15);
 		lblConexo.setLayoutY(305);
-		lblConexo.setText("(Ninguno)");
+		lblConexo.setText("Conexo:");
 		lblConexo.setFont(Font.font("Centurie Gothic", 12));
 
 		//
@@ -165,6 +166,7 @@ public class InterfazGrafica extends Application {
 				if (jarGrafo != null) {
 					DibujaGrafo dibujar = new DibujaGrafo(jarGrafo.getGrafo().getVertices().find(0).getId());
 					dibujar.DibujarGrafo(jarGrafo);
+					muestraListas(jarGrafo.getGrafo());
 				}
 
 			}
@@ -191,7 +193,7 @@ public class InterfazGrafica extends Application {
 	 *            grafo a sacar rankings
 	 */
 
-	public void muestraListas(Grafo grafo) {
+	public static void muestraListas(Grafo grafo) {
 		lstRankingDep.getItems().clear();
 		lstRankingRef.getItems().clear();
 		ranking = new Ranking(grafo);
@@ -215,14 +217,21 @@ public class InterfazGrafica extends Application {
 	}
 	
 	
-	public static void muestraGrado(String nombre) {
+	public static void muestraGrado(String nombre, Grafo graph) {
 	
 		ObjetoRanking temp = ranking.obtenerVertice(nombre);
 	
 		lblGE.getItems().clear();
 		lblGS.getItems().clear();
+		lblEsConexo.getItems().clear();
 	
 		lblGE.getItems().add(temp.getGradoEntrante());
 		lblGS.getItems().add(temp.getGradoSaliente());
+		if(graph.esConexo()) {
+			lblEsConexo.getItems().add("Si");
+		}
+		else {
+			lblEsConexo.getItems().add("No");
+		}
 	}
 }

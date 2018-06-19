@@ -105,9 +105,9 @@ public class Grafo {
 	 *            Nombre del Vertice inicial
 	 * @return Boolean
 	 */
-	public boolean esConexo(String inicial) {
+	public boolean esConexo() {
 		// SimpleList<NodoGrafo> visitados = new SimpleList<>();
-		esConexoAux(inicial);
+		esConexoAux(vertices.getFirst().getDato().getId());
 		System.out.println(vertices.getLength());
 		for (int i = 0; i < vertices.getLength(); i++) {
 			if (!vertices.find(i).getVisitado()) {
