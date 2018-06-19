@@ -13,11 +13,10 @@ public class MainPruebaGrafo {
 		
 		grafo.agregarArista("a", "b");
 		grafo.agregarArista("b", "c");
-		grafo.agregarArista("c", "e");
-		grafo.agregarArista("c", "a");
+		grafo.agregarArista("c", "d");
 		grafo.agregarArista("d", "e");
 		grafo.agregarArista("e", "f");
-		grafo.agregarArista("f", "a");
+		grafo.agregarArista("f", "e");
 		
 		grafo.imprimirGrafo();
 		System.out.println(grafo.esConexo());

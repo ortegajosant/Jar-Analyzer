@@ -11,7 +11,7 @@ public class PruebasJar {
 	@SuppressWarnings("resource")
     public static void main(String[] args) {
 
-		Dependencia dependencia = new Dependencia("C:\\Users\\jorte\\Desktop\\InvadersGame.jar");
+		Dependencia dependencia = new Dependencia("JarsDePrueba/InvadersGame.jar");
 		dependencia.generarGrafoJars();
 		
 		dependencia.getGrafo().imprimirGrafo();
@@ -23,6 +23,7 @@ public class PruebasJar {
 //			e.printStackTrace();
 //		}
 		
+		System.out.println(dependencia.getGrafo().esConexo());
 		Ranking ranking = new Ranking(dependencia.getGrafo());
 		//ranking.imprimirRanking();
     	
