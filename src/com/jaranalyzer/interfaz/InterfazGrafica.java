@@ -167,6 +167,7 @@ public class InterfazGrafica extends Application {
 					DibujaGrafo dibujar = new DibujaGrafo(jarGrafo.getGrafo().getVertices().find(0).getId());
 					dibujar.DibujarGrafo(jarGrafo);
 					muestraListas(jarGrafo.getGrafo());
+					muestraGrado(jarGrafo.getGrafo().getVertices().find(0).getId(), jarGrafo.getGrafo());
 				}
 
 			}

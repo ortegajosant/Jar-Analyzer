@@ -106,30 +106,45 @@ public class Grafo {
 	 * @return Boolean
 	 */
 	public boolean esConexo() {
-		// SimpleList<NodoGrafo> visitados = new SimpleList<>();
-		esConexoAux(vertices.getFirst().getDato().getId());
+		SimpleList<NodoGrafo> visitados = new SimpleList<>();
+		esConexoAux(vertices.getFirst().getDato().getId(), visitados, false);
 		System.out.println(vertices.getLength());
 		for (int i = 0; i < vertices.getLength(); i++) {
 			if (!vertices.find(i).getVisitado()) {
 				return false;
 			}
 		}
+		if (vertices.getLength() != visitados.getLength()) {
+			return false;
+		}
 		return true;
 	}
 
-	private void esConexoAux(String inicial) {
+	private void esConexoAux(String inicial, SimpleList<NodoGrafo> visitados, boolean visitado) {
 		NodoGrafo verticeActual = buscarVertice(inicial);
 		if (!verticeActual.getVisitado()) {
-			verticeActual.setVisitado(true);
+			verticeActual.setVisitado(visitado);
 			for (int j = 0; j < verticeActual.getAristas().getLength(); j++) {
 				if (!buscarVertice(verticeActual.getAristas().find(j)).getVisitado()) {
-					esConexoAux(verticeActual.getAristas().find(j));
+					if (!contieneVertice(visitados, verticeActual.getAristas().find(j))) {
+						visitados.add(new SimpleNode<NodoGrafo>(new NodoGrafo(verticeActual.getAristas().find(j), "")));
+					}
+					esConexoAux(verticeActual.getAristas().find(j), visitados, true);
 				}
 			}
 		}
 		if (!vertices.contains(verticeActual)) {
 			vertices.add(new SimpleNode<NodoGrafo>(verticeActual));
 		}
+	}
+	
+	private boolean contieneVertice(SimpleList<NodoGrafo> visitados, String nombre) {
+		for (int i = 0; i < visitados.getLength(); i++) {
+			if (visitados.find(i).getId().equals(nombre)) {
+				return true;
+			}	
+		}
+		return false;
 	}
 
 	/**
