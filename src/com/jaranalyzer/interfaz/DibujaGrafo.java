@@ -6,23 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import com.jaranalyzer.adapter.Adapter;
 import com.jaranalyzer.dependencias.Dependencia;
 import com.jaranalyzer.dependencias.DependenciaInterna;
 import com.jaranalyzer.dependencias.DependenciasClases;
-
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.Graph;
@@ -31,10 +23,15 @@ import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 
-
+/**
+ * Clase encargada de dibujar los grafos
+ * @author andrey
+ *
+ */
 @SuppressWarnings("serial")
 public class DibujaGrafo extends JFrame {
 
+	//Atributos
 	private String jarActual;
 	private JMenuBar menuBar;
 	private JMenu menu;
@@ -42,11 +39,20 @@ public class DibujaGrafo extends JFrame {
 	private String vertex = "";
 	private Graph grafo;
 	Layout<Integer, String> layout;
-
+	//
+	
+	/**
+	 * Constructor
+	 * @param jarActual el jar del cual se quiere dibujar el/los grafos
+	 */
 	public DibujaGrafo(String jarActual) {
 		this.jarActual = jarActual;
 	}
 	
+	/**
+	 * Dibuja el grafo
+	 * @param dependencia
+	 */
 	public void DibujarGrafo(Dependencia dependencia) {
 
 		this.grafo = Adapter.grafoJung(dependencia);
@@ -64,12 +70,14 @@ public class DibujaGrafo extends JFrame {
 					if(vertex.equals(jarActual)) {
 						DependenciasClases dc = new DependenciasClases(dependencia.getJar().getName());
 						DibujarGrafo(Adapter.adapterDC(dc));
+						InterfazGrafica.muestraGrado(vertex);
 					}
 					else {
 						DependenciaInterna di = new DependenciaInterna(dependencia.getJar(),
 								dependencia.obtenerDependenciaInterna(vertex));
 						if (di.getDependenciasInternas() != null) {
 							DibujarGrafo(Adapter.adapterDI(di));
+							InterfazGrafica.muestraGrado(vertex);
 						}
 					}
 				} catch (IOException e1) {

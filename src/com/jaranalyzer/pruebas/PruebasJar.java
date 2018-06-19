@@ -24,7 +24,7 @@ public class PruebasJar {
 //		}
 		
 		Ranking ranking = new Ranking(dependencia.getGrafo());
-		ranking.imprimirRanking();
+		//ranking.imprimirRanking();
     	
     }
 }

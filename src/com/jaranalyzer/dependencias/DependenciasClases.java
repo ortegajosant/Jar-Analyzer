@@ -57,22 +57,8 @@ public class DependenciasClases {
 						grafoClases.agregarArista(info.getClassName(), dependencia.getClassName());
 					}
 				}
-				
-				
-//				grafoClases.agregarVertice(info.getClassName(), "");
-//				dependencias = info.getReferredClassesArray();
-//				for (ClassInformation dep : dependencias) {
-//					System.out.println("\t> "+dep.getClassName());
-//					grafoClases.agregarVertice(dep.getClassName(), "");
-//					System.out.println(grafoClases.agregarArista(info.getClassName(), info.getClassName()));
-//				}
 			}
-//
-//			System.out.println("Cant. Paquetes: "+ws.getNumberOfContainedPackages());
-//			System.out.println("Cant. Clases: "+ws.getNumberOfContainedClasses());
-
 			generarGrafoClases();
-			
 			ws.release();
 		}
 		catch(Exception e) {
