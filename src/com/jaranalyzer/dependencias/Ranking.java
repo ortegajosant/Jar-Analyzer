@@ -125,19 +125,28 @@ public class Ranking {
 	}
 
 	/**
-	 * Imprime el ranking para los grafos que dependen y los que son referenciados
+	 * Devuelve una lista ordenada con las referencias
 	 */
-	public void imprimirRanking() {
+	public SimpleList RankingEntrante() {
 		ordenarRankingEntrante();
-		System.out.println("___GRADO ENTRANTE___\n");
+		SimpleList entrante = new SimpleList();
 		for (int i = 0; i < grados.getLength(); i++) {
-			System.out.println(grados.find(i).getID() + " ---> " + grados.find(i).getGradoEntrante());
+			SimpleNode<String> nodo = new SimpleNode<String>(grados.find(i).getID() + " -> " + grados.find(i).getGradoEntrante());
 		}
+		return entrante;
+	}
+	
+	/**
+	 * Devuelve una lista ordenada con las dependencias
+	 */
+	public SimpleList RankingSaliente() {
 		ordenarRankingSaliente();
-		System.out.println("\n___GRADO SALIENTE___\n");
+		SimpleList saliente = new SimpleList();
 		for (int i = 0; i < grados.getLength(); i++) {
-			System.out.println(grados.find(i).getID() + " ---> " + grados.find(i).getGradoSaliente());
+			SimpleNode<String> nodo = new SimpleNode<String>(grados.find(i).getID() + " -> " + grados.find(i).getGradoSaliente());
+			saliente.add(nodo);
 		}
+		return saliente;
 	}
 
 }
